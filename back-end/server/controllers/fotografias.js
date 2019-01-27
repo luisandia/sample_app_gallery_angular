@@ -97,19 +97,28 @@ function getFotografia(req,res){
         }
     })
 }
-
+function getPhotos(params,res){
+    fotografias.all(params)
+    .then(fotografias => {
+        res.status(200).send({fotografias});
+    })
+}
 function getAll(req,res){
-    fotografias.all({
+    getPhotos({
         where:{
             activo:true
         },
         order:[
             ['numero','ASC']
         ]
-    })
-    .then(fotografias => {
-        res.status(200).send({fotografias});
-    })
+    },res)
+}
+function getAllAdmin(req,res){
+    getPhotos({
+        order:[
+            ['numero','ASC']
+        ]
+    },res)
 }
 
 module.exports = {
@@ -117,5 +126,6 @@ module.exports = {
     update,
     updateFotografia,
     getFotografia,
-    getAll
+    getAll,
+    getAllAdmin
 }

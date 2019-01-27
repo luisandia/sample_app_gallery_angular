@@ -1,0 +1,33 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "programar",
+    "database": "galeria-fotografias",
+    "host": "127.0.0.1",
+    "operatorsAliases": {
+      "$and":"Op.and",
+      "$or":"Op.or",
+      "$eq":"Op.eq",
+      "$gt":"Op.gt",
+      "$lt":"Op.lt",
+      "$lte":"Op.lte",
+      "$like":"Op.like"
+    },
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "token_secret":"912ec803b2ce49e4a541068d495ab570"
+}

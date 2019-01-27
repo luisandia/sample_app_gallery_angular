@@ -82,12 +82,40 @@ function updateFotografia(req,res){
     }else {
         res.status(400).send({message:'You must select photo'});
     }
+}
 
+function getFotografia(req,res){
+    let fotografia = req.params.fotografia;
+    let thumb = req.params.thumb;
+    let path_photo = thumb?'./server/uploads/fotografias/thumbs/'+fotografia:'./server/uploads/fotografias/'+fotografia;
 
+    fs.exists(path_photo,(exists)=>{
+        if(exists){
+            res.sendFile(path.resolve(path_photo));
+        }else {
+            res.status(400).send({message:"Photo not exists"})
+        }
+    })
+}
+
+function getAll(req,res){
+    fotografias.all({
+        where:{
+            activo:true
+        },
+        order:[
+            ['numero','ASC']
+        ]
+    })
+    .then(fotografias => {
+        res.status(200).send({fotografias});
+    })
 }
 
 module.exports = {
     create,
     update,
-    updateFotografia
+    updateFotografia,
+    getFotografia,
+    getAll
 }
